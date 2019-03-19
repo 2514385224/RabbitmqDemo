@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jju.sshweb.mapper.CategorysecondMapper">
+  <resultMap id="BaseResultMap" type="com.jju.sshweb.model.Categorysecond">
+    <id column="csid" jdbcType="INTEGER" property="csid" />
+    <result column="csname" jdbcType="VARCHAR" property="csname" />
+    <result column="cid" jdbcType="INTEGER" property="cid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    csid, csname, cid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from categorysecond
+    where csid = #{csid,jdbcType=INTEGER}
+  </select>
+  <select id="selectByPrimaryCid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  		 select 
+	    <include refid="Base_Column_List" />
+	    from categorysecond
+	    where cid = #{cid,jdbcType=INTEGER}
+  </select>
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from categorysecond
+    where csid = #{csid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jju.sshweb.model.Categorysecond">
+    insert into categorysecond (csid, csname, cid
+      )
+    values (#{csid,jdbcType=INTEGER}, #{csname,jdbcType=VARCHAR}, #{cid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jju.sshweb.model.Categorysecond">
+    insert into categorysecond
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="csid != null">
+        csid,
+      </if>
+      <if test="csname != null">
+        csname,
+      </if>
+      <if test="cid != null">
+        cid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="csid != null">
+        #{csid,jdbcType=INTEGER},
+      </if>
+      <if test="csname != null">
+        #{csname,jdbcType=VARCHAR},
+      </if>
+      <if test="cid != null">
+        #{cid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jju.sshweb.model.Categorysecond">
+    update categorysecond
+    <set>
+      <if test="csname != null">
+        csname = #{csname,jdbcType=VARCHAR},
+      </if>
+      <if test="cid != null">
+        cid = #{cid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where csid = #{csid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jju.sshweb.model.Categorysecond">
+    update categorysecond
+    set csname = #{csname,jdbcType=VARCHAR},
+      cid = #{cid,jdbcType=INTEGER}
+    where csid = #{csid,jdbcType=INTEGER}
+  </update>
+</mapper>
